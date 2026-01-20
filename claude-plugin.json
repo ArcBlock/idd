@@ -6,12 +6,12 @@
   "license": "MIT",
   "repository": "https://github.com/ArcBlock/idd",
   "skills": [
-    "../skills/intent-interview",
-    "../skills/intent-review"
+    "skills/intent-interview",
+    "skills/intent-review"
   ],
   "agents": [
-    "../agents/intent-validate.md",
-    "../agents/intent-sync.md",
-    "../agents/intent-audit.md"
+    "agents/intent-validate.md",
+    "agents/intent-sync.md",
+    "agents/intent-audit.md"
   ]
 }
