@@ -8,11 +8,24 @@
 
 ```
 Traditional:  Code → Test → Documentation
-TDD:          Test → Code → Documentation
-IDD:          Intent → Test → Code → Sync
+SDD:          Spec → Code → Test              (Spec as reference)
+TDD:          Test → Code → Documentation     (Test as contract)
+IDD:          Intent → Test → Code → Sync     (Intent as source of truth)
 ```
 
 **Intent is the new source code.** Code review is done by AI, Intent review is done by Humans.
+
+### Why not SDD?
+
+| Aspect | SDD | IDD |
+|--------|-----|-----|
+| Organization | By requirement type (functional, UX, technical) | By module/layer |
+| Core artifact | Text descriptions | Structure diagrams |
+| Granularity | Split into user stories | Keep complete patterns |
+| Task management | Separate task files | None - AI decomposes autonomously |
+| LLM friendliness | Needs context assembly | Understands complete pattern at once |
+
+See [docs/methodology.md](docs/methodology.md) for detailed comparison.
 
 ## Toolkit Overview
 

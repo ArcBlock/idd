@@ -8,11 +8,24 @@
 
 ```
 传统开发：  Code → Test → Documentation
-TDD：       Test → Code → Documentation
-IDD：       Intent → Test → Code → Sync
+SDD：       Spec → Code → Test              (Spec 作为参考)
+TDD：       Test → Code → Documentation     (Test 作为契约)
+IDD：       Intent → Test → Code → Sync     (Intent 作为唯一真相)
 ```
 
 **Intent 是新的源代码。** Code review 由 AI 完成，Intent review 由 Human 完成。
+
+### 为什么不用 SDD？
+
+| 维度 | SDD | IDD |
+|------|-----|-----|
+| 组织方式 | 按 requirement 类型（功能、UX、技术） | 按模块/层级 |
+| 核心载体 | 文字描述 | 结构图 |
+| 粒度 | 细分到 user story | 保持完整 pattern |
+| Task 管理 | 独立 task 文件 | 不需要，AI 自主分解 |
+| LLM 友好度 | 需要拼装上下文 | 一次性理解完整 pattern |
+
+详见 [methodology.md](methodology.md)。
 
 ## 工具链概览
 
