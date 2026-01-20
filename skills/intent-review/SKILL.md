@@ -1,6 +1,6 @@
 ---
 name: intent-review
-description: 交互式 Intent 审批。逐 Section 审阅并标记状态（locked/reviewed/draft）。使用 /intent-review <path> 审批指定 Intent 文件，或 /intent-review 审批当前目录的 Intent。
+description: Interactive Intent approval. Review sections and mark status (locked/reviewed/draft). Use /intent-review <path> to review a specific file, or /intent-review to review Intent in current directory.
 ---
 
 # Intent Review

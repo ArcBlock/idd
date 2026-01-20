@@ -1,6 +1,6 @@
 ---
 name: intent-interview
-description: Transform vague ideas into implementation-ready specifications through structured interviewing. Use when user describes a new feature/product idea, has a problem to solve, needs to document requirements, or says things like "帮我梳理需求", "interview me about this", "细化这个想法", "spec out this project". Produces two artifacts - intent.md (technical spec for code agents) and overview.md (human-friendly summary for team).
+description: Transform vague ideas into implementation-ready specifications through structured interviewing. Use when user describes a new feature/product idea, has a problem to solve, or needs to document requirements. Produces intent.md (technical spec for code agents) and overview.md (human-friendly summary).
 ---
 
 # Intent Interview
