@@ -1,201 +1,206 @@
-# Intent Approval 机制
+# Intent Approval Mechanism
 
 > Intent is the new source code.
-> Code review 由 AI 完成，Intent review 由 Human 完成。
+> Code review is done by AI, Intent review is done by Humans.
 
-## 设计原则
+[中文版](zh/intent-approval.md)
 
-1. **渐进增强** - 无工具时纯 markdown 可读，有工具时体验更好
-2. **Section 粒度** - 审批以 section 为单位，不是整个文件
-3. **状态可见** - 一眼能看到哪些区域需要关注
+## Design Principles
+
+1. **Progressive Enhancement** - Plain markdown readable without tools, better experience with tools
+2. **Section Granularity** - Approval at section level, not entire file
+3. **Visible Status** - See at a glance which areas need attention
 
 ---
 
-## Approval 层级
+## Approval Levels
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │  🔒 LOCKED (Constitutional)                                  │
 │                                                              │
-│  核心原则，修改需要明确的 human decision                      │
-│  - 模块边界规则                                              │
-│  - 核心数据结构                                              │
-│  - 安全约束                                                  │
+│  Core principles, modification requires explicit human       │
+│  decision                                                    │
+│  - Module boundary rules                                     │
+│  - Core data structures                                      │
+│  - Security constraints                                      │
 │                                                              │
-│  修改时：必须 human review，需要明确理由                      │
+│  On modification: Must have human review with clear reason   │
 ├─────────────────────────────────────────────────────────────┤
 │  ✓ REVIEWED (Accepted)                                       │
 │                                                              │
-│  人已审阅接受，修改需要 human 注意                            │
-│  - API 签名                                                  │
-│  - 配置格式                                                  │
-│  - 关键流程                                                  │
+│  Human has reviewed and accepted, modification needs         │
+│  human attention                                             │
+│  - API signatures                                            │
+│  - Configuration formats                                     │
+│  - Critical flows                                            │
 │                                                              │
-│  修改时：通知 human，可以事后 review                          │
+│  On modification: Notify human, can review afterwards        │
 ├─────────────────────────────────────────────────────────────┤
 │  📝 DRAFT (Proposed)                                         │
 │                                                              │
-│  设计草案，Agent 可自由迭代优化                               │
-│  - 实现细节                                                  │
-│  - 示例代码                                                  │
-│  - 辅助说明                                                  │
+│  Design draft, Agent can freely iterate and optimize         │
+│  - Implementation details                                    │
+│  - Example code                                              │
+│  - Supplementary explanations                                │
 │                                                              │
-│  修改时：无需通知，human 可以选择性 review                    │
+│  On modification: No notification needed, human can          │
+│  optionally review                                           │
 └─────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 标记语法
+## Markup Syntax
 
-### Fenced Div 格式
+### Fenced Div Format
 
-使用 `:::` 包裹区域，标记状态：
+Use `:::` to wrap sections and mark status:
 
 ```markdown
 ::: locked
-## 模块边界规则
+## Module Boundary Rules
 
-Deploy 模块不允许直接访问 Router 内部...
+Deploy module cannot directly access Router internals...
 :::
 
 ::: reviewed {by=robert date=2026-01-19}
-## API 签名
+## API Signatures
 
 ### create(chamberPath, config, appsDir)
 
-创建 chamber...
+Creates a chamber...
 :::
 
 ::: draft
-## 实现建议
+## Implementation Suggestions
 
-可以考虑使用缓存优化...
+Consider using cache optimization...
 :::
 ```
 
-### 属性格式
+### Attribute Format
 
 ```
 ::: <status> {key=value key=value}
 ```
 
-| 属性 | 说明 | 示例 |
-|-----|------|------|
-| by | 审批人 | by=robert |
-| date | 审批日期 | date=2026-01-19 |
-| reason | 锁定原因 | reason="核心架构" |
-| ticket | 关联 issue | ticket=#123 |
+| Attribute | Description | Example |
+|-----------|-------------|---------|
+| by | Approver | by=robert |
+| date | Approval date | date=2026-01-19 |
+| reason | Lock reason | reason="Core architecture" |
+| ticket | Related issue | ticket=#123 |
 
 ---
 
-## 渲染效果
+## Rendering
 
-### 无工具时 (GitHub/编辑器)
+### Without Tools (GitHub/Editor)
 
 ```
 ::: locked
-## 模块边界规则
+## Module Boundary Rules
 
-内容...
+Content...
 :::
 ```
 
-纯文本可读，区域边界清晰。
+Plain text readable, section boundaries clear.
 
-### 有工具时 (Intent Viewer)
+### With Tools (Intent Viewer)
 
 ```
-┃🔒│ ## 模块边界规则              │
-┃  │                              │ LOCKED
-┃  │ Deploy 模块不允许直接访问... │ 核心架构
-┃  │                              │
-├──┼──────────────────────────────┤
-┃✓ │ ## API 签名                  │
-┃  │                              │ REVIEWED
-┃  │ ### create(...)             │ robert, 2026-01-19
-┃  │                              │
-├──┼──────────────────────────────┤
-┃  │ ## 实现建议                  │
-┃  │                              │ DRAFT
-┃  │ 可以考虑...                  │
+┃🔒│ ## Module Boundary Rules         │
+┃  │                                  │ LOCKED
+┃  │ Deploy module cannot directly... │ Core architecture
+┃  │                                  │
+├──┼──────────────────────────────────┤
+┃✓ │ ## API Signatures                │
+┃  │                                  │ REVIEWED
+┃  │ ### create(...)                  │ robert, 2026-01-19
+┃  │                                  │
+├──┼──────────────────────────────────┤
+┃  │ ## Implementation Suggestions    │
+┃  │                                  │ DRAFT
+┃  │ Consider using...                │
 ```
 
 ---
 
-## 工具链愿景
+## Toolchain Vision
 
-### Layer 0: 纯文本 (现有)
+### Layer 0: Plain Text (Current)
 
-- GitHub/任意编辑器可阅读
-- `git diff` 可用
-- `grep` 可搜索 `::: locked` 等
+- Readable in GitHub/any editor
+- `git diff` works
+- `grep` can search for `::: locked` etc.
 
 ### Layer 1: Intent Viewer
 
-- 渲染侧栏状态标记
-- 区域背景/边框高亮
-  - locked = 红色边框
-  - reviewed = 绿色边框
-  - draft = 灰色边框
-- 折叠/展开 sections
-- 状态统计 (N locked, M reviewed, K draft)
+- Render sidebar status markers
+- Section background/border highlighting
+  - locked = red border
+  - reviewed = green border
+  - draft = gray border
+- Collapse/expand sections
+- Status statistics (N locked, M reviewed, K draft)
 
 ### Layer 2: Intent Approver
 
-- 交互式审批界面
-- 点击标记 reviewed/locked
-- 自动添加 by/date
-- 批量审批
+- Interactive approval interface
+- Click to mark reviewed/locked
+- Auto-add by/date
+- Batch approval
 
 ### Layer 3: Intent Diff
 
-- 按 section 对比变更
-- 高亮 locked section 的修改（⚠️ 需要关注）
-- 显示状态变更 (draft → reviewed)
-- 忽略 draft section 的小改动
+- Compare changes by section
+- Highlight locked section modifications (⚠️ needs attention)
+- Show status changes (draft → reviewed)
+- Ignore minor changes in draft sections
 
 ### Layer 4: Intent History
 
-- 时间线视图
-- 每个 section 的演变历史
-- 谁在什么时候 approve 了什么
-- 关联 git commits
+- Timeline view
+- Evolution history of each section
+- Who approved what and when
+- Link to git commits
 
 ---
 
-## Agent 行为规则
+## Agent Behavior Rules
 
-### 修改 LOCKED section
-
-```
-1. 检测到修改 locked section
-2. 暂停，生成修改理由
-3. 请求 human review
-4. 等待 human 确认后继续
-```
-
-### 修改 REVIEWED section
+### Modifying LOCKED Section
 
 ```
-1. 允许修改
-2. 记录变更
-3. 通知 human (可异步)
-4. human 可事后 review
+1. Detect modification to locked section
+2. Pause, generate modification reason
+3. Request human review
+4. Wait for human confirmation before continuing
 ```
 
-### 修改 DRAFT section
+### Modifying REVIEWED Section
 
 ```
-1. 自由修改
-2. 无需通知
+1. Allow modification
+2. Record change
+3. Notify human (can be async)
+4. Human can review afterwards
+```
+
+### Modifying DRAFT Section
+
+```
+1. Modify freely
+2. No notification needed
 ```
 
 ---
 
-## 解析示例
+## Parsing Example
 
-Agent 解析 intent 文件时：
+When agent parses intent file:
 
 ```javascript
 const sections = parseIntent(content);
@@ -204,14 +209,14 @@ const sections = parseIntent(content);
 //   {
 //     id: 'module-boundaries',
 //     status: 'locked',
-//     title: '模块边界规则',
+//     title: 'Module Boundary Rules',
 //     content: '...',
-//     meta: { reason: '核心架构' }
+//     meta: { reason: 'Core architecture' }
 //   },
 //   {
 //     id: 'api-signature',
 //     status: 'reviewed',
-//     title: 'API 签名',
+//     title: 'API Signatures',
 //     content: '...',
 //     meta: { by: 'robert', date: '2026-01-19' }
 //   },
@@ -221,8 +226,8 @@ const sections = parseIntent(content);
 
 ---
 
-## 版本历史
+## Version History
 
-| 日期 | 变更 |
-|------|------|
-| 2026-01-19 | 初始设计 |
+| Date | Changes |
+|------|---------|
+| 2026-01-19 | Initial design |

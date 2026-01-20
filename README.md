@@ -1,85 +1,87 @@
 # IDD - Intent Driven Development
 
-> Intent 驱动开发的完整工具链
+> Complete toolkit for Intent-driven development
 
-## 理念
+[中文文档](./docs/zh/README.md)
+
+## Philosophy
 
 ```
-传统开发：  Code → Test → Documentation
-TDD：       Test → Code → Documentation
-IDD：       Intent → Test → Code → Sync
+Traditional:  Code → Test → Documentation
+TDD:          Test → Code → Documentation
+IDD:          Intent → Test → Code → Sync
 ```
 
-**Intent 是新的源代码。** Code review 由 AI 完成，Intent review 由 Human 完成。
+**Intent is the new source code.** Code review is done by AI, Intent review is done by Humans.
 
-## 工具链概览
+## Toolkit Overview
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    IDD Lifecycle                             │
+│                      IDD Lifecycle                           │
 │                                                              │
-│  创建层                                                       │
+│  Creation                                                    │
 │  ┌───────────────────┐                                       │
-│  │ /intent-interview │ → 从想法创建 INTENT.md                 │
+│  │ /intent-interview │ → Create INTENT.md from ideas         │
 │  └───────────────────┘                                       │
 │                                                              │
-│  质量层                                                       │
+│  Quality                                                     │
 │  ┌───────────────────┐  ┌───────────────────┐               │
 │  │ intent-validate   │  │ /intent-review    │               │
-│  │   (subagent)      │  │   格式校验 + 审批   │               │
+│  │   (subagent)      │  │   Review & Approve │               │
 │  └───────────────────┘  └───────────────────┘               │
 │                                                              │
-│  同步层                                                       │
+│  Sync                                                        │
 │  ┌───────────────────┐  ┌───────────────────┐               │
 │  │ intent-sync       │  │ intent-audit      │               │
-│  │   实现一致性检查    │  │   项目级健康报告   │               │
+│  │   Code consistency │  │   Project health  │               │
 │  │   (subagent)      │  │   (subagent)      │               │
 │  └───────────────────┘  └───────────────────┘               │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-## 安装
+## Installation
 
 ```bash
-# 添加到 Claude Code settings
-claude mcp add-plugin ~/work/idd
+# Add to Claude Code settings
+claude mcp add-plugin ~/path/to/idd
 ```
 
-## 命令
+## Commands
 
-### Skills（交互式）
+### Skills (Interactive)
 
-| 命令 | 说明 |
-|------|------|
-| `/intent-interview` | 通过结构化访谈，从想法创建完整的 INTENT.md |
-| `/intent-review` | 逐 Section 审批 Intent，标记 locked/reviewed/draft |
+| Command | Description |
+|---------|-------------|
+| `/intent-interview` | Create complete INTENT.md through structured interviewing |
+| `/intent-review` | Review and approve Intent sections (locked/reviewed/draft) |
 
-### Subagents（自主分析）
+### Subagents (Autonomous)
 
-| Agent | 触发场景 | 产出 |
-|-------|---------|------|
-| `intent-validate` | Intent 修改后 | 格式合规报告 |
-| `intent-sync` | 实现完成后 | 代码与 Intent 差异报告 |
-| `intent-audit` | 定期检查 | 项目级 Intent 健康报告 |
+| Agent | Trigger | Output |
+|-------|---------|--------|
+| `intent-validate` | After Intent modification | Compliance report |
+| `intent-sync` | After implementation | Code-Intent diff report |
+| `intent-audit` | Periodic check | Project health report |
 
-## Intent 文件规范
+## Intent File Structure
 
-见 [docs/intent-standard.md](docs/intent-standard.md)
+See [docs/intent-standard.md](docs/intent-standard.md)
 
-## Section 审批机制
+## Section Approval Mechanism
 
-见 [docs/intent-approval.md](docs/intent-approval.md)
+See [docs/intent-approval.md](docs/intent-approval.md)
 
-## 与 AINE 的关系
+## Relationship to AINE
 
-IDD 是 [AINE (AI Native Engineering)](https://github.com/ArcBlock/aine) 方法论的核心实践之一。
+IDD is a core practice of the [AINE (AI Native Engineering)](https://github.com/ArcBlock/aine) methodology.
 
 ```
-AINE 方法论
-├── IDD (Intent Driven Development)  ← 本 plugin
-├── Contract 三态语义
-├── TDD 先行
-├── Chamber 架构
+AINE Methodology
+├── IDD (Intent Driven Development)  ← This plugin
+├── Contract Semantics (satisfied/violated/degraded)
+├── TDD First
+├── Chamber Architecture
 └── Human-in-the-loop
 ```
 

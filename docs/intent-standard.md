@@ -1,37 +1,39 @@
-# Intent 设计规范
+# Intent Design Standard
 
-> 适用于多项目、多 repo 的通用标准
-> 版本: 1.0
+> Universal standard for multi-project, multi-repo Intent files
+> Version: 1.0
 
-## 设计目标
+[中文版](zh/intent-standard.md)
 
-1. **Agent 区域自治** - 每个模块/chamber 有独立 intent，agent 在自己范围内自主规划
-2. **层级清晰** - 项目级、模块级、架构级各有分工
-3. **结构图优先** - ASCII 图比文字更精确
-4. **可测试性** - Intent 直接映射到测试断言
+## Design Goals
+
+1. **Agent Regional Autonomy** - Each module/chamber has its own intent, agents work autonomously within their scope
+2. **Clear Hierarchy** - Project-level, module-level, and architecture-level each have distinct responsibilities
+3. **Diagrams First** - ASCII diagrams are more precise than prose
+4. **Testability** - Intent maps directly to test assertions
 
 ---
 
-## 目录结构
+## Directory Structure
 
-### 标准布局
+### Standard Layout
 
 ```
 project/
-├── intent/                      # 项目级 intent
-│   ├── INTENT.md                # 入口：愿景 + 索引
-│   ├── architecture/            # 架构级约束
-│   │   ├── DEPENDENCIES.md      # 模块依赖图
-│   │   └── BOUNDARIES.md        # 边界规则
-│   └── specs/                   # 结构规范
-│       └── *.md                 # 各类结构图
+├── intent/                      # Project-level intent
+│   ├── INTENT.md                # Entry: vision + index
+│   ├── architecture/            # Architecture constraints
+│   │   ├── DEPENDENCIES.md      # Module dependency graph
+│   │   └── BOUNDARIES.md        # Boundary rules
+│   └── specs/                   # Structure specifications
+│       └── *.md
 │
 ├── src/
-│   ├── core/                    # 核心模块
+│   ├── core/                    # Core module
 │   │   └── intent/
-│   │       └── INTENT.md        # core 模块 intent
+│   │       └── INTENT.md        # Core module intent
 │   │
-│   ├── platforms/               # 多平台
+│   ├── platforms/               # Multi-platform
 │   │   ├── web/
 │   │   │   └── intent/
 │   │   │       └── INTENT.md
@@ -39,7 +41,7 @@ project/
 │   │       └── intent/
 │   │           └── INTENT.md
 │   │
-│   └── chambers/                # 独立 chambers
+│   └── chambers/                # Independent chambers
 │       ├── terminal/
 │       │   └── intent/
 │       │       └── INTENT.md
@@ -48,86 +50,86 @@ project/
 │               └── INTENT.md
 │
 └── docs/
-    └── engineering/             # 工程方法论
-        └── intent-standard.md   # 本文档
+    └── engineering/
+        └── intent-standard.md   # This document
 ```
 
 ---
 
-## 层级职责
+## Hierarchy Responsibilities
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  项目级 intent/                                              │
-│  - 愿景和目标                                                │
-│  - 模块索引                                                  │
-│  - 架构约束 (依赖、边界)                                      │
-│  - 全局结构规范                                              │
+│  Project-level intent/                                       │
+│  - Vision and goals                                          │
+│  - Module index                                              │
+│  - Architecture constraints (dependencies, boundaries)       │
+│  - Global structure specifications                           │
 ├─────────────────────────────────────────────────────────────┤
-│  模块级 intent/                                              │
-│  - 模块职责                                                  │
-│  - API 签名                                                  │
-│  - 内部结构                                                  │
-│  - 本模块特有规范                                            │
+│  Module-level intent/                                        │
+│  - Module responsibilities                                   │
+│  - API signatures                                            │
+│  - Internal structure                                        │
+│  - Module-specific specifications                            │
 │                                                              │
-│  ⚠️ Agent 在此范围内自主工作，不越界                          │
+│  ⚠️ Agents work autonomously here, no boundary crossing      │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### 项目级 vs 模块级
+### Project-level vs Module-level
 
-| 内容 | 项目级 | 模块级 |
-|-----|-------|-------|
-| 愿景目标 | ✓ | - |
-| 模块索引 | ✓ | - |
-| 依赖关系 | ✓ | - |
-| 边界规则 | ✓ | - |
-| 模块职责 | - | ✓ |
-| API 签名 | - | ✓ |
-| 内部结构 | - | ✓ |
-| 测试断言 | - | ✓ |
+| Content | Project-level | Module-level |
+|---------|---------------|--------------|
+| Vision & Goals | ✓ | - |
+| Module Index | ✓ | - |
+| Dependencies | ✓ | - |
+| Boundary Rules | ✓ | - |
+| Module Responsibilities | - | ✓ |
+| API Signatures | - | ✓ |
+| Internal Structure | - | ✓ |
+| Test Assertions | - | ✓ |
 
 ---
 
-## 文件格式
+## File Formats
 
-### INTENT.md (入口)
+### INTENT.md (Entry Point)
 
 ```markdown
-# <模块名> Intent
+# <ModuleName> Intent
 
-> 一句话定位
+> One-line positioning
 
-## 职责
+## Responsibilities
 
-- 做什么
-- 不做什么
+- What it does
+- What it doesn't do
 
-## 结构
+## Structure
 
 \```
-目录/数据结构图
+Directory/data structure diagram
 \```
 
 ## API
 
 ### functionName(params)
 
-**参数:** ...
-**返回:** ...
-**约束:** ...
+**Parameters:** ...
+**Returns:** ...
+**Constraints:** ...
 
-## 示例
+## Examples
 
-输入 → 输出
+Input → Output
 ```
 
-### DEPENDENCIES.md (依赖图)
+### DEPENDENCIES.md (Dependency Graph)
 
 ```markdown
-# 模块依赖
+# Module Dependencies
 
-## 依赖图
+## Dependency Graph
 
 \```
     API Layer
@@ -144,7 +146,7 @@ project/
        FS
 \```
 
-## 依赖矩阵
+## Dependency Matrix
 
 |          | Chamber | Deploy | Router | FS |
 |----------|---------|--------|--------|-----|
@@ -153,76 +155,47 @@ project/
 | Router   | ✓       | ✗      | -      | ✗   |
 | Chamber  | -       | ✗      | ✗      | ✓   |
 
-✓ 允许依赖  ✗ 禁止依赖  - 自身
+✓ Allowed  ✗ Forbidden  - Self
 ```
 
-### BOUNDARIES.md (边界规则)
+### BOUNDARIES.md (Boundary Rules)
 
 ```markdown
-# 边界规则
+# Boundary Rules
 
-## 原则
+## Principles
 
-- 依赖单向：上层 → 下层
-- 不越级访问
-- 通过 API 通信，不直接访问内部
+- Dependencies flow one way: upper → lower
+- No skipping layers
+- Communicate via API, no direct internal access
 
-## 禁止模式
+## Forbidden Patterns
 
-| 文件 | 禁止 | 原因 |
-|-----|------|------|
-| api.js | `join(appsDir, ...)` | 必须通过 Chamber API |
-| deploy.js | `import.*route-engine` | 不允许跨模块 |
+| File | Forbidden | Reason |
+|------|-----------|--------|
+| api.js | `join(appsDir, ...)` | Must use Chamber API |
+| deploy.js | `import.*route-engine` | No cross-module imports |
 
-## 检查方法
+## Verification
 
 \```bash
-# 检测违规 import
+# Detect violations
 grep -r "join.*appsDir" src/platforms/
-\```
-```
-
-### Structure Spec (结构规范)
-
-```markdown
-# <名称> 结构规范
-
-## 目录结构
-
-\```
-apps/my-app/
-├── .chamber.yaml         # 说明
-└── branches/
-    └── <branch>/
-        └── public/
-\```
-
-## 配置格式
-
-### .chamber.yaml
-\```yaml
-default: main
-\```
-
-## 状态机 (如有)
-
-\```
-[created] → [running] → [stopped]
 \```
 ```
 
 ---
 
-## Agent 工作模式
+## Agent Work Mode
 
-### 区域自治
+### Regional Autonomy
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│                     项目级 Agent                              │
-│  - 读取 intent/INTENT.md 理解全局                             │
-│  - 根据任务分配到具体模块                                      │
-│  - 不直接修改模块内部代码                                      │
+│                     Project-level Agent                       │
+│  - Read intent/INTENT.md to understand the whole             │
+│  - Assign tasks to specific modules                          │
+│  - Does not directly modify module internals                 │
 └──────────────────────────────────────────────────────────────┘
                               │
               ┌───────────────┼───────────────┐
@@ -230,78 +203,77 @@ default: main
 ┌──────────────────┐ ┌──────────────────┐ ┌──────────────────┐
 │  Core Agent      │ │  Terminal Agent  │ │  CLI Agent       │
 │                  │ │                  │ │                  │
-│  读取:           │ │  读取:           │ │  读取:           │
+│  Reads:          │ │  Reads:          │ │  Reads:          │
 │  core/intent/    │ │  terminal/intent/│ │  cli/intent/     │
 │                  │ │                  │ │                  │
-│  工作范围:       │ │  工作范围:       │ │  工作范围:       │
+│  Scope:          │ │  Scope:          │ │  Scope:          │
 │  core/src/       │ │  terminal/src/   │ │  cli/src/        │
 │  core/tests/     │ │  terminal/tests/ │ │  cli/tests/      │
 └──────────────────┘ └──────────────────┘ └──────────────────┘
 ```
 
-### 关键规则
+### Key Rules
 
-1. **Agent 只在自己区域工作** - 不越界修改其他模块
-2. **Agent 自主分解任务** - 不需要外部 task 文件
-3. **Agent 遵循本地 intent** - 先读 intent，再规划
-4. **跨模块需求上报** - 需要修改其他模块时，生成跨模块请求
-
----
-
-## 最小化原则
-
-### 必须有
-
-- `intent/INTENT.md` - 项目入口
-- `<module>/intent/INTENT.md` - 每个独立模块
-
-### 按需添加
-
-- `intent/architecture/` - 有多模块依赖时
-- `intent/specs/` - 有复杂结构规范时
-- `<module>/intent/*.md` - 模块内部有多个设计文档时
-
-### 不需要
-
-- Task 文件 - Agent 自主分解
-- User Story 文件 - 直接描述行为
-- 按 requirement 类型分类 - 按模块组织
+1. **Agents work only in their region** - No crossing boundaries
+2. **Agents decompose tasks autonomously** - No external task files needed
+3. **Agents follow local intent** - Read intent first, then plan
+4. **Cross-module needs escalate** - Generate requests when needing to modify other modules
 
 ---
 
-## 演进路径
+## Minimalism Principle
+
+### Must Have
+
+- `intent/INTENT.md` - Project entry
+- `<module>/intent/INTENT.md` - Each independent module
+
+### Add As Needed
+
+- `intent/architecture/` - When multi-module dependencies exist
+- `intent/specs/` - When complex structure specifications needed
+- `<module>/intent/*.md` - When module has multiple design docs
+
+### Not Needed
+
+- Task files - Agents decompose autonomously
+- User Story files - Describe behavior directly
+- Classification by requirement type - Organize by module
+
+---
+
+## Evolution Path
 
 ```
-阶段 1: 最小化
-├── intent/INTENT.md              # 项目入口
-└── module/intent/INTENT.md       # 各模块
+Stage 1: Minimal
+├── intent/INTENT.md              # Project entry
+└── module/intent/INTENT.md       # Each module
 
-阶段 2: 添加架构约束
+Stage 2: Add Architecture Constraints
 ├── intent/
 │   ├── INTENT.md
 │   └── architecture/
-│       ├── DEPENDENCIES.md       # 模块多了需要依赖图
+│       ├── DEPENDENCIES.md
 │       └── BOUNDARIES.md
 
-阶段 3: 添加结构规范
+Stage 3: Add Structure Specifications
 ├── intent/
 │   ├── INTENT.md
 │   ├── architecture/
 │   └── specs/
-│       └── directory-structure.md  # 复杂结构需要规范
+│       └── directory-structure.md
 ```
 
 ---
 
-## 相关文档
+## Related Documents
 
-- [intent-approval.md](intent-approval.md) - Section 级别的审批机制
-- [intent-vs-sdd.md](intent-vs-sdd.md) - Intent vs SDD 方法论对比
+- [intent-approval.md](intent-approval.md) - Section-level approval mechanism
 
 ---
 
-## 版本历史
+## Version History
 
-| 版本 | 日期 | 变更 |
-|-----|------|------|
-| 1.0 | 2026-01-19 | 初始版本 |
+| Version | Date | Changes |
+|---------|------|---------|
+| 1.0 | 2026-01-19 | Initial version |
