@@ -57,11 +57,11 @@ IDD：       Intent → Test → Code → Sync     (Intent 作为唯一真相)
 │  │   (自动 agent)    │  │   生成文档        │               │
 │  └───────────────────┘  └───────────────────┘               │
 │                                                              │
-│  健康检查                                                     │
-│  ┌───────────────────┐                                       │
-│  │ intent-audit      │                                       │
-│  │   (自动 agent)    │                                       │
-│  └───────────────────┘                                       │
+│  健康检查与分享                                               │
+│  ┌───────────────────┐  ┌───────────────────┐               │
+│  │ intent-audit      │  │ /intent-story     │               │
+│  │   (自动 agent)    │  │   分享经验        │               │
+│  └───────────────────┘  └───────────────────┘               │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -85,6 +85,7 @@ claude mcp add-plugin ~/path/to/idd
 | `/intent-review` | 逐 Section 审批 Intent，标记 locked/reviewed/draft |
 | `/intent-check` | 运行格式验证和同步检查（触发 agents） |
 | `/intent-report` | 从 Intent 生成人类可读的报告文档 |
+| `/intent-story` | 分享 IDD 使用经验，生成博客文章（多语言） |
 
 ### Agents（自主）
 
@@ -110,6 +111,8 @@ claude mcp add-plugin ~/path/to/idd
 /intent-check             # 6. 验证一致性
     ↓
 /intent-report            # 7. 生成文档
+    ↓
+/intent-story             # 8. 分享你的经验（可选）
 ```
 
 ## 文档

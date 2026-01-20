@@ -1,6 +1,6 @@
 {
   "name": "idd",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Intent Driven Development - Complete toolkit for Intent-driven development",
   "author": "ArcBlock",
   "license": "MIT",
@@ -11,7 +11,8 @@
     "skills/intent-review",
     "skills/intent-check",
     "skills/intent-report",
-    "skills/intent-assess"
+    "skills/intent-assess",
+    "skills/intent-story"
   ],
   "agents": [
     "agents/intent-validate.md",

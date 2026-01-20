@@ -57,11 +57,11 @@ See [docs/methodology.md](docs/methodology.md) for detailed comparison.
 │  │   (auto agent)    │  │   Generate docs   │               │
 │  └───────────────────┘  └───────────────────┘               │
 │                                                              │
-│  Health                                                      │
-│  ┌───────────────────┐                                       │
-│  │ intent-audit      │                                       │
-│  │   (auto agent)    │                                       │
-│  └───────────────────┘                                       │
+│  Health & Share                                              │
+│  ┌───────────────────┐  ┌───────────────────┐               │
+│  │ intent-audit      │  │ /intent-story     │               │
+│  │   (auto agent)    │  │   Share experience│               │
+│  └───────────────────┘  └───────────────────┘               │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -85,6 +85,7 @@ claude mcp add-plugin ~/path/to/idd
 | `/intent-review` | Review and approve Intent sections (locked/reviewed/draft) |
 | `/intent-check` | Run validation and sync checks (triggers agents) |
 | `/intent-report` | Generate human-readable reports from Intent files |
+| `/intent-story` | Share your IDD experience, create blog posts (multi-language) |
 
 ### Agents (Autonomous)
 
@@ -110,6 +111,8 @@ claude mcp add-plugin ~/path/to/idd
 /intent-check             # 6. Validate consistency
     ↓
 /intent-report            # 7. Generate documentation
+    ↓
+/intent-story             # 8. Share your experience (optional)
 ```
 
 ## Documentation
