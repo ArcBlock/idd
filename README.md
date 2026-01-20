@@ -33,30 +33,43 @@ See [docs/methodology.md](docs/methodology.md) for detailed comparison.
 ┌─────────────────────────────────────────────────────────────┐
 │                      IDD Lifecycle                           │
 │                                                              │
+│  Setup                                                       │
+│  ┌───────────────────┐  ┌───────────────────┐               │
+│  │ /intent-assess    │  │ /intent-init      │               │
+│  │   Evaluate fit    │  │   Initialize IDD  │               │
+│  └───────────────────┘  └───────────────────┘               │
+│                                                              │
 │  Creation                                                    │
+│  ┌───────────────────┐  ┌───────────────────┐               │
+│  │ /intent-interview │  │ /intent-review    │               │
+│  │   Create Intent   │  │   Approve sections│               │
+│  └───────────────────┘  └───────────────────┘               │
+│                                                              │
+│  Validation                                                  │
+│  ┌───────────────────┐  ┌───────────────────┐               │
+│  │ /intent-check     │  │ intent-validate   │               │
+│  │   Run checks      │  │   (auto agent)    │               │
+│  └───────────────────┘  └───────────────────┘               │
+│                                                              │
+│  Sync & Report                                               │
+│  ┌───────────────────┐  ┌───────────────────┐               │
+│  │ intent-sync       │  │ /intent-report    │               │
+│  │   (auto agent)    │  │   Generate docs   │               │
+│  └───────────────────┘  └───────────────────┘               │
+│                                                              │
+│  Health                                                      │
 │  ┌───────────────────┐                                       │
-│  │ /intent-interview │ → Create INTENT.md from ideas         │
+│  │ intent-audit      │                                       │
+│  │   (auto agent)    │                                       │
 │  └───────────────────┘                                       │
-│                                                              │
-│  Quality                                                     │
-│  ┌───────────────────┐  ┌───────────────────┐               │
-│  │ intent-validate   │  │ /intent-review    │               │
-│  │   (subagent)      │  │   Review & Approve │               │
-│  └───────────────────┘  └───────────────────┘               │
-│                                                              │
-│  Sync                                                        │
-│  ┌───────────────────┐  ┌───────────────────┐               │
-│  │ intent-sync       │  │ intent-audit      │               │
-│  │   Code consistency │  │   Project health  │               │
-│  │   (subagent)      │  │   (subagent)      │               │
-│  └───────────────────┘  └───────────────────┘               │
 └─────────────────────────────────────────────────────────────┘
 ```
 
 ## Installation
 
 ```bash
-# Add to Claude Code settings
+# Clone and add to Claude Code
+git clone https://github.com/ArcBlock/idd ~/path/to/idd
 claude mcp add-plugin ~/path/to/idd
 ```
 
@@ -66,24 +79,46 @@ claude mcp add-plugin ~/path/to/idd
 
 | Command | Description |
 |---------|-------------|
+| `/intent-assess` | Evaluate if IDD fits your project, learn IDD methodology |
+| `/intent-init` | Initialize IDD structure in project (check existing, create templates) |
 | `/intent-interview` | Create complete INTENT.md through structured interviewing |
 | `/intent-review` | Review and approve Intent sections (locked/reviewed/draft) |
+| `/intent-check` | Run validation and sync checks (triggers agents) |
+| `/intent-report` | Generate human-readable reports from Intent files |
 
-### Subagents (Autonomous)
+### Agents (Autonomous)
 
 | Agent | Trigger | Output |
 |-------|---------|--------|
-| `intent-validate` | After Intent modification | Compliance report |
+| `intent-validate` | After Intent modification | Format compliance report |
 | `intent-sync` | After implementation | Code-Intent diff report |
 | `intent-audit` | Periodic check | Project health report |
 
-## Intent File Structure
+## Workflow
 
-See [docs/intent-standard.md](docs/intent-standard.md)
+```
+/intent-assess            # 1. Evaluate project fit
+    ↓
+/intent-init              # 2. Initialize IDD structure
+    ↓
+/intent-interview         # 3. Create Intent from ideas
+    ↓
+/intent-review            # 4. Approve critical sections
+    ↓
+[Development]             # 5. Code (AI follows Intent)
+    ↓
+/intent-check             # 6. Validate consistency
+    ↓
+/intent-report            # 7. Generate documentation
+```
 
-## Section Approval Mechanism
+## Documentation
 
-See [docs/intent-approval.md](docs/intent-approval.md)
+| Document | Description |
+|----------|-------------|
+| [docs/methodology.md](docs/methodology.md) | IDD vs SDD detailed comparison |
+| [docs/intent-standard.md](docs/intent-standard.md) | Intent file format specification |
+| [docs/intent-approval.md](docs/intent-approval.md) | Section approval mechanism |
 
 ## Relationship to AINE
 

@@ -33,30 +33,43 @@ IDD：       Intent → Test → Code → Sync     (Intent 作为唯一真相)
 ┌─────────────────────────────────────────────────────────────┐
 │                    IDD 生命周期                               │
 │                                                              │
-│  创建层                                                       │
+│  准备阶段                                                     │
+│  ┌───────────────────┐  ┌───────────────────┐               │
+│  │ /intent-assess    │  │ /intent-init      │               │
+│  │   评估适配度       │  │   初始化 IDD      │               │
+│  └───────────────────┘  └───────────────────┘               │
+│                                                              │
+│  创建阶段                                                     │
+│  ┌───────────────────┐  ┌───────────────────┐               │
+│  │ /intent-interview │  │ /intent-review    │               │
+│  │   创建 Intent     │  │   审批 sections   │               │
+│  └───────────────────┘  └───────────────────┘               │
+│                                                              │
+│  验证阶段                                                     │
+│  ┌───────────────────┐  ┌───────────────────┐               │
+│  │ /intent-check     │  │ intent-validate   │               │
+│  │   运行检查        │  │   (自动 agent)    │               │
+│  └───────────────────┘  └───────────────────┘               │
+│                                                              │
+│  同步与报告                                                   │
+│  ┌───────────────────┐  ┌───────────────────┐               │
+│  │ intent-sync       │  │ /intent-report    │               │
+│  │   (自动 agent)    │  │   生成文档        │               │
+│  └───────────────────┘  └───────────────────┘               │
+│                                                              │
+│  健康检查                                                     │
 │  ┌───────────────────┐                                       │
-│  │ /intent-interview │ → 从想法创建 INTENT.md                 │
+│  │ intent-audit      │                                       │
+│  │   (自动 agent)    │                                       │
 │  └───────────────────┘                                       │
-│                                                              │
-│  质量层                                                       │
-│  ┌───────────────────┐  ┌───────────────────┐               │
-│  │ intent-validate   │  │ /intent-review    │               │
-│  │   (subagent)      │  │   格式校验 + 审批   │               │
-│  └───────────────────┘  └───────────────────┘               │
-│                                                              │
-│  同步层                                                       │
-│  ┌───────────────────┐  ┌───────────────────┐               │
-│  │ intent-sync       │  │ intent-audit      │               │
-│  │   实现一致性检查    │  │   项目级健康报告   │               │
-│  │   (subagent)      │  │   (subagent)      │               │
-│  └───────────────────┘  └───────────────────┘               │
 └─────────────────────────────────────────────────────────────┘
 ```
 
 ## 安装
 
 ```bash
-# 添加到 Claude Code settings
+# Clone 后添加到 Claude Code
+git clone https://github.com/ArcBlock/idd ~/path/to/idd
 claude mcp add-plugin ~/path/to/idd
 ```
 
@@ -66,10 +79,14 @@ claude mcp add-plugin ~/path/to/idd
 
 | 命令 | 说明 |
 |------|------|
+| `/intent-assess` | 评估项目是否适合 IDD，学习 IDD 方法论 |
+| `/intent-init` | 初始化项目 IDD 结构（检查现状，创建模板） |
 | `/intent-interview` | 通过结构化访谈，从想法创建完整的 INTENT.md |
 | `/intent-review` | 逐 Section 审批 Intent，标记 locked/reviewed/draft |
+| `/intent-check` | 运行格式验证和同步检查（触发 agents） |
+| `/intent-report` | 从 Intent 生成人类可读的报告文档 |
 
-### Subagents（自主分析）
+### Agents（自主）
 
 | Agent | 触发场景 | 产出 |
 |-------|---------|------|
@@ -77,13 +94,31 @@ claude mcp add-plugin ~/path/to/idd
 | `intent-sync` | 实现完成后 | 代码与 Intent 差异报告 |
 | `intent-audit` | 定期检查 | 项目级 Intent 健康报告 |
 
-## Intent 文件规范
+## 工作流程
 
-见 [intent-standard.md](intent-standard.md)
+```
+/intent-assess            # 1. 评估项目适配度
+    ↓
+/intent-init              # 2. 初始化 IDD 结构
+    ↓
+/intent-interview         # 3. 从想法创建 Intent
+    ↓
+/intent-review            # 4. 审批关键 sections
+    ↓
+[开发]                    # 5. 写代码（AI 遵循 Intent）
+    ↓
+/intent-check             # 6. 验证一致性
+    ↓
+/intent-report            # 7. 生成文档
+```
 
-## Section 审批机制
+## 文档
 
-见 [intent-approval.md](intent-approval.md)
+| 文档 | 说明 |
+|------|------|
+| [methodology.md](methodology.md) | IDD vs SDD 详细对比 |
+| [intent-standard.md](intent-standard.md) | Intent 文件格式规范 |
+| [intent-approval.md](intent-approval.md) | Section 审批机制 |
 
 ## 与 AINE 的关系
 
