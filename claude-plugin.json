@@ -1,0 +1,16 @@
+{
+  "name": "idd",
+  "version": "0.1.0",
+  "description": "Intent Driven Development - Intent 驱动开发的完整工具链",
+  "author": "ArcBlock",
+  "license": "MIT",
+  "skills": [
+    "skills/intent-interview",
+    "skills/intent-review"
+  ],
+  "agents": [
+    "agents/intent-validate.md",
+    "agents/intent-sync.md",
+    "agents/intent-audit.md"
+  ]
+}
