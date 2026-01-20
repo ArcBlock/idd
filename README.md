@@ -68,7 +68,10 @@ See [docs/methodology.md](docs/methodology.md) for detailed comparison.
 ## Installation
 
 ```bash
-# Clone and add to Claude Code
+# Quick install
+npx add-skill arcblock/idd
+
+# Or manual install
 git clone https://github.com/ArcBlock/idd ~/path/to/idd
 claude mcp add-plugin ~/path/to/idd
 ```
@@ -122,19 +125,6 @@ claude mcp add-plugin ~/path/to/idd
 | [docs/methodology.md](docs/methodology.md) | IDD vs SDD detailed comparison |
 | [docs/intent-standard.md](docs/intent-standard.md) | Intent file format specification |
 | [docs/intent-approval.md](docs/intent-approval.md) | Section approval mechanism |
-
-## Relationship to AINE
-
-IDD is a core practice of the [AINE (AI Native Engineering)](https://github.com/ArcBlock/aine) methodology.
-
-```
-AINE Methodology
-├── IDD (Intent Driven Development)  ← This plugin
-├── Contract Semantics (satisfied/violated/degraded)
-├── TDD First
-├── Chamber Architecture
-└── Human-in-the-loop
-```
 
 ## License
 

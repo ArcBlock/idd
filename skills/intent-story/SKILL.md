@@ -253,8 +253,7 @@ Intent → Test → Code → Sync
 
 **开始使用**：
 ```bash
-git clone https://github.com/ArcBlock/idd
-claude mcp add-plugin ~/path/to/idd
+npx add-skill arcblock/idd
 ```
 
 了解更多：[github.com/ArcBlock/idd](https://github.com/ArcBlock/idd)

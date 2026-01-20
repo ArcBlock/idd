@@ -68,7 +68,10 @@ IDD：       Intent → Test → Code → Sync     (Intent 作为唯一真相)
 ## 安装
 
 ```bash
-# Clone 后添加到 Claude Code
+# 快速安装
+npx add-skill arcblock/idd
+
+# 或手动安装
 git clone https://github.com/ArcBlock/idd ~/path/to/idd
 claude mcp add-plugin ~/path/to/idd
 ```
@@ -122,19 +125,6 @@ claude mcp add-plugin ~/path/to/idd
 | [methodology.md](methodology.md) | IDD vs SDD 详细对比 |
 | [intent-standard.md](intent-standard.md) | Intent 文件格式规范 |
 | [intent-approval.md](intent-approval.md) | Section 审批机制 |
-
-## 与 AINE 的关系
-
-IDD 是 [AINE (AI Native Engineering)](https://github.com/ArcBlock/aine) 方法论的核心实践之一。
-
-```
-AINE 方法论
-├── IDD (Intent Driven Development)  ← 本 plugin
-├── Contract 三态语义
-├── TDD 先行
-├── Chamber 架构
-└── Human-in-the-loop
-```
 
 ## License
 
