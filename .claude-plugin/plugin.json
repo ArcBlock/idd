@@ -1,0 +1,19 @@
+{
+  "name": "idd",
+  "version": "0.3.0",
+  "description": "Intent Driven Development - Complete toolkit for Intent-driven development",
+  "author": {
+    "name": "ArcBlock",
+    "url": "https://www.arcblock.io"
+  },
+  "repository": "https://github.com/ArcBlock/idd",
+  "license": "MIT",
+  "keywords": [
+    "intent",
+    "idd",
+    "ai-native",
+    "development",
+    "methodology",
+    "specification"
+  ]
+}
