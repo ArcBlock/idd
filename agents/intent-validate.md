@@ -1,3 +1,10 @@
+---
+name: intent-validate
+description: Validates Intent files against IDD standards. Use after Intent modification or before /intent-review. Checks structure completeness, hierarchy correctness, format compliance, and section markup.
+tools: Read, Grep, Glob
+model: inherit
+---
+
 # Intent Validate Agent
 
 > 检查 Intent 文件是否符合 IDD 规范

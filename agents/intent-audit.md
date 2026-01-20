@@ -1,3 +1,10 @@
+---
+name: intent-audit
+description: Project-level Intent health check. Use for periodic audits, onboarding, or before major releases. Reports coverage, freshness, approval status, dependency consistency, and boundary violations.
+tools: Read, Grep, Glob
+model: inherit
+---
+
 # Intent Audit Agent
 
 > 项目级 Intent 健康检查

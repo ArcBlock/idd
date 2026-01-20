@@ -1,3 +1,10 @@
+---
+name: intent-sync
+description: Checks code implementation consistency with Intent. Use after development completion or during PR review. Compares API signatures, data structures, behaviors, and boundary rules.
+tools: Read, Grep, Glob
+model: inherit
+---
+
 # Intent Sync Agent
 
 > 检查代码实现与 Intent 的一致性
