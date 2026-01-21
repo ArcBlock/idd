@@ -1,6 +1,6 @@
 {
   "name": "idd",
-  "version": "0.3.0",
+  "version": "0.5.0",
   "description": "Intent Driven Development - Complete toolkit for Intent-driven development",
   "author": {
     "name": "ArcBlock",
@@ -15,5 +15,52 @@
     "development",
     "methodology",
     "specification"
+  ],
+  "skills": [
+    {
+      "name": "intent-assess",
+      "path": "skills/intent-assess/SKILL.md",
+      "description": "Evaluate if a project is suitable for IDD adoption"
+    },
+    {
+      "name": "intent-check",
+      "path": "skills/intent-check/SKILL.md",
+      "description": "Verify code implementation matches Intent specification"
+    },
+    {
+      "name": "intent-init",
+      "path": "skills/intent-init/SKILL.md",
+      "description": "Initialize IDD structure in a project"
+    },
+    {
+      "name": "intent-interview",
+      "path": "skills/intent-interview/SKILL.md",
+      "description": "Transform ideas into Intent specifications through interviewing"
+    },
+    {
+      "name": "intent-plan",
+      "path": "skills/intent-plan/SKILL.md",
+      "description": "Generate phased TDD execution plan from Intent"
+    },
+    {
+      "name": "intent-report",
+      "path": "skills/intent-report/SKILL.md",
+      "description": "Generate IDD health report for a project"
+    },
+    {
+      "name": "intent-review",
+      "path": "skills/intent-review/SKILL.md",
+      "description": "Section-level Intent approval workflow"
+    },
+    {
+      "name": "intent-story",
+      "path": "skills/intent-story/SKILL.md",
+      "description": "Share IDD adoption experiences as blog posts"
+    },
+    {
+      "name": "intent-sync",
+      "path": "skills/intent-sync/SKILL.md",
+      "description": "Sync finalized implementation details back to Intent"
+    }
   ]
 }

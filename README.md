@@ -45,23 +45,29 @@ See [docs/methodology.md](docs/methodology.md) for detailed comparison.
 │  │   Create Intent   │  │   Approve sections│               │
 │  └───────────────────┘  └───────────────────┘               │
 │                                                              │
+│  Execution                                                   │
+│  ┌───────────────────┐  ┌───────────────────┐               │
+│  │ /intent-plan      │  │ /intent-sync      │               │
+│  │   TDD plan        │  │   Sync back       │               │
+│  └───────────────────┘  └───────────────────┘               │
+│                                                              │
 │  Validation                                                  │
 │  ┌───────────────────┐  ┌───────────────────┐               │
 │  │ /intent-check     │  │ intent-validate   │               │
 │  │   Run checks      │  │   (auto agent)    │               │
 │  └───────────────────┘  └───────────────────┘               │
 │                                                              │
-│  Sync & Report                                               │
+│  Report & Share                                              │
 │  ┌───────────────────┐  ┌───────────────────┐               │
-│  │ intent-sync       │  │ /intent-report    │               │
-│  │   (auto agent)    │  │   Generate docs   │               │
+│  │ /intent-report    │  │ /intent-story     │               │
+│  │   Generate docs   │  │   Share experience│               │
 │  └───────────────────┘  └───────────────────┘               │
 │                                                              │
-│  Health & Share                                              │
-│  ┌───────────────────┐  ┌───────────────────┐               │
-│  │ intent-audit      │  │ /intent-story     │               │
-│  │   (auto agent)    │  │   Share experience│               │
-│  └───────────────────┘  └───────────────────┘               │
+│  Health (Autonomous Agents)                                  │
+│  ┌───────────────────┐                                      │
+│  │ intent-audit      │                                      │
+│  │   Project health  │                                      │
+│  └───────────────────┘                                      │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -86,6 +92,8 @@ claude mcp add-plugin ~/path/to/idd
 | `/intent-init` | Initialize IDD structure in project (check existing, create templates) |
 | `/intent-interview` | Create complete INTENT.md through structured interviewing |
 | `/intent-review` | Review and approve Intent sections (locked/reviewed/draft) |
+| `/intent-plan` | Generate phased execution plan with strict TDD (test first, then implement) |
+| `/intent-sync` | After implementation, sync finalized details back to Intent |
 | `/intent-check` | Run validation and sync checks (triggers agents) |
 | `/intent-report` | Generate human-readable reports from Intent files |
 | `/intent-story` | Share your IDD experience, create blog posts (multi-language) |
@@ -95,7 +103,6 @@ claude mcp add-plugin ~/path/to/idd
 | Agent | Trigger | Output |
 |-------|---------|--------|
 | `intent-validate` | After Intent modification | Format compliance report |
-| `intent-sync` | After implementation | Code-Intent diff report |
 | `intent-audit` | Periodic check | Project health report |
 
 ## Workflow
@@ -109,13 +116,17 @@ claude mcp add-plugin ~/path/to/idd
     ↓
 /intent-review            # 4. Approve critical sections
     ↓
-[Development]             # 5. Code (AI follows Intent)
+/intent-plan              # 5. Generate TDD execution plan
     ↓
-/intent-check             # 6. Validate consistency
+[Execute: Test → Implement cycles]
     ↓
-/intent-report            # 7. Generate documentation
+/intent-sync              # 6. Sync finalized details back to Intent
     ↓
-/intent-story             # 8. Share your experience (optional)
+/intent-check             # 7. Validate consistency
+    ↓
+/intent-report            # 8. Generate documentation
+    ↓
+/intent-story             # 9. Share your experience (optional)
 ```
 
 ## Documentation
@@ -125,6 +136,13 @@ claude mcp add-plugin ~/path/to/idd
 | [docs/methodology.md](docs/methodology.md) | IDD vs SDD detailed comparison |
 | [docs/intent-standard.md](docs/intent-standard.md) | Intent file format specification |
 | [docs/intent-approval.md](docs/intent-approval.md) | Section approval mechanism |
+
+## Blog
+
+| Article | Language |
+|---------|----------|
+| [Intent Is the New Source Code](docs/blog/idd-intent-is-new-source-code-en.md) | English |
+| [AI 时代别再写需求文档了，写 Intent](docs/blog/idd-intent-is-new-source-code-zh.md) | 中文 |
 
 ## License
 
