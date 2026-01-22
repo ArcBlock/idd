@@ -1,6 +1,6 @@
 {
   "name": "idd",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Intent Driven Development - Complete toolkit for Intent-driven development",
   "author": {
     "name": "ArcBlock",
@@ -26,6 +26,11 @@
       "name": "intent-check",
       "path": "skills/intent-check/SKILL.md",
       "description": "Verify code implementation matches Intent specification"
+    },
+    {
+      "name": "intent-critique",
+      "path": "skills/intent-critique/SKILL.md",
+      "description": "Critical review for over-engineering and simplification opportunities"
     },
     {
       "name": "intent-init",

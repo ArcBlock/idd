@@ -21,6 +21,7 @@ IDD:   Intent → Test → Code → Sync
 | 命令 | 文件 | 说明 |
 |------|------|------|
 | `/intent-interview` | `skills/intent-interview/` | 从想法创建 INTENT.md |
+| `/intent-critique` | `skills/intent-critique/` | 设计质量批判与简化 |
 | `/intent-review` | `skills/intent-review/` | Section 级别审批 |
 
 ### Subagents（自主分析）
