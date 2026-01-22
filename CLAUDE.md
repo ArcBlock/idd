@@ -24,6 +24,7 @@ IDD:   Intent → Test → Code → Sync
 | `/intent-critique` | `skills/intent-critique/` | 设计质量批判与简化 |
 | `/intent-changes` | `skills/intent-changes/` | 结构化变更提案与协作 Review |
 | `/intent-review` | `skills/intent-review/` | Section 级别审批 |
+| `/intent-build-now` | `skills/intent-build-now/` | 验证 Intent 完整性并启动构建 |
 
 ### Subagents（自主分析）
 
@@ -32,6 +33,15 @@ IDD:   Intent → Test → Code → Sync
 | `intent-validate` | `agents/intent-validate.md` | 格式合规检查 |
 | `intent-sync` | `agents/intent-sync.md` | 实现一致性检查 |
 | `intent-audit` | `agents/intent-audit.md` | 项目级健康报告 |
+
+### Subagents（TDD 执行）
+
+| Agent | 文件 | 说明 |
+|-------|------|------|
+| `idd-task-execution-master` | `agents/idd-task-execution-master.md` | 将 Intent 转换为阶段性执行计划 |
+| `idd-test-master` | `agents/idd-test-master.md` | 测试优先设计，定义完整测试规格 |
+| `idd-code-guru` | `agents/idd-code-guru.md` | 基于测试实现优雅代码 |
+| `idd-e2e-test-queen` | `agents/idd-e2e-test-queen.md` | E2E 测试设计与验证 |
 
 ### 规范文档
 
@@ -64,11 +74,16 @@ idd/
 │   ├── intent-interview/   # 创建 Intent
 │   ├── intent-critique/    # 设计质量批判
 │   ├── intent-changes/     # 变更提案 Review
-│   └── intent-review/      # Section 审批
+│   ├── intent-review/      # Section 审批
+│   └── intent-build-now/   # 验证并启动构建
 ├── agents/
 │   ├── intent-validate.md  # 格式检查
 │   ├── intent-sync.md      # 一致性检查
-│   └── intent-audit.md     # 健康报告
+│   ├── intent-audit.md     # 健康报告
+│   ├── idd-task-execution-master.md  # 阶段性执行计划
+│   ├── idd-test-master.md            # 测试规格设计
+│   ├── idd-code-guru.md              # 代码实现
+│   └── idd-e2e-test-queen.md         # E2E 验证
 └── docs/
     ├── intent-standard.md  # 结构规范
     └── intent-approval.md  # 审批机制
