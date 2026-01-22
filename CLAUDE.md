@@ -22,6 +22,7 @@ IDD:   Intent → Test → Code → Sync
 |------|------|------|
 | `/intent-interview` | `skills/intent-interview/` | 从想法创建 INTENT.md |
 | `/intent-critique` | `skills/intent-critique/` | 设计质量批判与简化 |
+| `/intent-changes` | `skills/intent-changes/` | 结构化变更提案与协作 Review |
 | `/intent-review` | `skills/intent-review/` | Section 级别审批 |
 
 ### Subagents（自主分析）
@@ -53,14 +54,17 @@ claude --agent intent-validate --input '{"path": "test.md"}'
 
 ```
 idd/
-├── claude-plugin.json      # Plugin 配置
+├── .claude-plugin/
+│   └── plugin.json         # Plugin 配置
 ├── CLAUDE.md               # 本文件
 ├── README.md               # 用户文档
+├── intent/                 # 新 Skill 的 Intent 文档
+│   └── skills/
 ├── skills/
 │   ├── intent-interview/   # 创建 Intent
-│   │   └── SKILL.md
-│   └── intent-review/      # 审批 Intent
-│       └── SKILL.md
+│   ├── intent-critique/    # 设计质量批判
+│   ├── intent-changes/     # 变更提案 Review
+│   └── intent-review/      # Section 审批
 ├── agents/
 │   ├── intent-validate.md  # 格式检查
 │   ├── intent-sync.md      # 一致性检查
