@@ -41,20 +41,42 @@ See [docs/methodology.md](docs/methodology.md) for detailed comparison.
 │                                                              │
 │  Creation                                                    │
 │  ┌───────────────────┐  ┌───────────────────┐               │
-│  │ /intent-interview │  │ /intent-review    │               │
-│  │   Create Intent   │  │   Approve sections│               │
+│  │ /intent-interview │  │ /intent-critique  │               │
+│  │   Create Intent   │  │   Review quality  │               │
+│  └───────────────────┘  └───────────────────┘               │
+│                                                              │
+│  Review                                                      │
+│  ┌───────────────────┐  ┌───────────────────┐               │
+│  │ /intent-review    │  │ /intent-changes   │               │
+│  │   Approve sections│  │   Propose changes │               │
 │  └───────────────────┘  └───────────────────┘               │
 │                                                              │
 │  Execution                                                   │
 │  ┌───────────────────┐  ┌───────────────────┐               │
-│  │ /intent-plan      │  │ /intent-sync      │               │
-│  │   TDD plan        │  │   Sync back       │               │
+│  │ /intent-build-now │  │ /intent-plan      │               │
+│  │   Validate & build│  │   TDD plan        │               │
 │  └───────────────────┘  └───────────────────┘               │
+│           │                                                  │
+│           ▼                                                  │
+│  ┌─────────────────────────────────────────────────────┐    │
+│  │  TDD Agent Team (Autonomous Execution)              │    │
+│  │                                                     │    │
+│  │  idd-task-execution-master ──→ Phase planning       │    │
+│  │           │                                         │    │
+│  │           ▼                                         │    │
+│  │  idd-test-master ──→ Test-first design              │    │
+│  │           │                                         │    │
+│  │           ▼                                         │    │
+│  │  idd-code-guru ──→ Elegant implementation           │    │
+│  │           │                                         │    │
+│  │           ▼                                         │    │
+│  │  idd-e2e-test-queen ──→ E2E verification            │    │
+│  └─────────────────────────────────────────────────────┘    │
 │                                                              │
-│  Validation                                                  │
+│  Sync & Validate                                             │
 │  ┌───────────────────┐  ┌───────────────────┐               │
-│  │ /intent-check     │  │ intent-validate   │               │
-│  │   Run checks      │  │   (auto agent)    │               │
+│  │ /intent-sync      │  │ /intent-check     │               │
+│  │   Sync back       │  │   Run checks      │               │
 │  └───────────────────┘  └───────────────────┘               │
 │                                                              │
 │  Report & Share                                              │
@@ -62,12 +84,6 @@ See [docs/methodology.md](docs/methodology.md) for detailed comparison.
 │  │ /intent-report    │  │ /intent-story     │               │
 │  │   Generate docs   │  │   Share experience│               │
 │  └───────────────────┘  └───────────────────┘               │
-│                                                              │
-│  Health (Autonomous Agents)                                  │
-│  ┌───────────────────┐                                      │
-│  │ intent-audit      │                                      │
-│  │   Project health  │                                      │
-│  └───────────────────┘                                      │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -91,8 +107,11 @@ claude mcp add-plugin ~/path/to/idd
 | `/intent-assess` | Evaluate if IDD fits your project, learn IDD methodology |
 | `/intent-init` | Initialize IDD structure in project (check existing, create templates) |
 | `/intent-interview` | Create complete INTENT.md through structured interviewing |
+| `/intent-critique` | Critical review for over-engineering, YAGNI violations, simplification |
+| `/intent-changes` | Structured change proposals with PR-like review experience |
 | `/intent-review` | Review and approve Intent sections (locked/reviewed/draft) |
-| `/intent-plan` | Generate phased execution plan with strict TDD (test first, then implement) |
+| `/intent-build-now` | **Validate Intent completeness, then launch TDD execution** |
+| `/intent-plan` | Generate phased execution plan with strict TDD |
 | `/intent-sync` | After implementation, sync finalized details back to Intent |
 | `/intent-check` | Run validation and sync checks (triggers agents) |
 | `/intent-report` | Generate human-readable reports from Intent files |
@@ -100,10 +119,22 @@ claude mcp add-plugin ~/path/to/idd
 
 ### Agents (Autonomous)
 
+#### Validation Agents
+
 | Agent | Trigger | Output |
 |-------|---------|--------|
 | `intent-validate` | After Intent modification | Format compliance report |
+| `intent-sync` | After implementation | Implementation consistency check |
 | `intent-audit` | Periodic check | Project health report |
+
+#### TDD Execution Agents
+
+| Agent | Role | Description |
+|-------|------|-------------|
+| `idd-task-execution-master` | Phase Planning | Transform Intent into phased TDD execution plan |
+| `idd-test-master` | Test Design | Define comprehensive test specs before implementation |
+| `idd-code-guru` | Implementation | Write elegant code that passes all tests |
+| `idd-e2e-test-queen` | E2E Verification | Design and validate end-to-end tests |
 
 ## Workflow
 
@@ -114,19 +145,39 @@ claude mcp add-plugin ~/path/to/idd
     ↓
 /intent-interview         # 3. Create Intent from ideas
     ↓
-/intent-review            # 4. Approve critical sections
+/intent-critique          # 4. Review for over-engineering (optional)
     ↓
-/intent-plan              # 5. Generate TDD execution plan
+/intent-review            # 5. Approve critical sections
     ↓
-[Execute: Test → Implement cycles]
+/intent-build-now         # 6. Validate & start building
+    │
+    ├──→ idd-task-execution-master (phase planning)
+    │         ↓
+    ├──→ idd-test-master (test-first design)
+    │         ↓
+    ├──→ idd-code-guru (implementation)
+    │         ↓
+    └──→ idd-e2e-test-queen (E2E verification)
     ↓
-/intent-sync              # 6. Sync finalized details back to Intent
+/intent-sync              # 7. Sync finalized details back to Intent
     ↓
-/intent-check             # 7. Validate consistency
+/intent-check             # 8. Validate consistency
     ↓
-/intent-report            # 8. Generate documentation
+/intent-report            # 9. Generate documentation
     ↓
-/intent-story             # 9. Share your experience (optional)
+/intent-story             # 10. Share your experience (optional)
+```
+
+### Quick Start: From Intent to Code
+
+```bash
+# Have an Intent ready? Start building immediately:
+/intent-build-now
+
+# This will:
+# 1. Validate your Intent completeness
+# 2. Report any gaps that need fixing
+# 3. If ready, launch the TDD agent team
 ```
 
 ## Documentation
