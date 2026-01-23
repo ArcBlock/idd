@@ -162,6 +162,31 @@ Prompt: "根据这个 Intent 为认证模块设计测试: ..."
 
 自动触发验证 Agent。
 
+## Agent 通信
+
+Agent 传递结构化信息：
+
+```
+task-execution-master ──▶ test-master
+{
+  "task": "P1-T01",
+  "title": "Token Validation",
+  "scope": "src/auth/validator.ts",
+  "requirements": [...]
+}
+
+test-master ──▶ code-guru
+{
+  "task": "P1-T01",
+  "tests": [
+    { "name": "validates correct token", "type": "happy" },
+    { "name": "rejects expired token", "type": "bad" },
+    ...
+  ],
+  "testFile": "tests/auth/validator.test.ts"
+}
+```
+
 ## 最佳实践
 
 ### 1. 信任过程
@@ -179,6 +204,13 @@ Agent 在完整、明确的 Intent 文档下工作最好。
 ### 4. 不要跳过 Agent
 
 链条一起工作。跳过 test-master 会破坏整个过程。
+
+## 下一步
+
+- [idd-task-execution-master](../../agents/idd-task-execution-master.md) - 阶段规划
+- [idd-test-master](../../agents/idd-test-master.md) - 测试设计
+- [idd-code-guru](../../agents/idd-code-guru.md) - 实现
+- [idd-e2e-test-queen](../../agents/idd-e2e-test-queen.md) - E2E 验证
 
 ## 相关文档
 

@@ -14,9 +14,9 @@ These agents ensure Intent quality and consistency:
 
 | Agent | Purpose | Trigger |
 |-------|---------|---------|
-| [intent-validate](intent-validate.md) | Format compliance | After Intent modification |
-| [intent-sync](intent-sync.md) | Implementation consistency | After code changes |
-| [intent-audit](intent-audit.md) | Project health | Periodic / on-demand |
+| [intent-validate](../../agents/intent-validate.md) | Format compliance | After Intent modification |
+| [intent-sync](../../agents/intent-sync.md) | Implementation consistency | After code changes |
+| [intent-audit](../../agents/intent-audit.md) | Project health | Periodic / on-demand |
 
 ### TDD Execution Agents
 

@@ -318,7 +318,7 @@ We believe:
 ## More Help
 
 - [IDD Workflow](workflow.md) - Complete guide
-- [Commands Reference](commands/) - All commands
-- [Agents Documentation](agents/) - How agents work
+- [Commands Reference](commands/README.md) - All commands
+- [Agents Documentation](agents/overview.md) - How agents work
 - [Intent Standard](intent-standard.md) - File format
 - [Methodology](methodology.md) - IDD philosophy

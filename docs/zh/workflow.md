@@ -258,7 +258,7 @@ project/
 
 ## 下一步
 
-- [命令参考](commands/) - 每个命令的详细文档
-- [Agent 文档](agents/) - TDD Agent 如何工作
+- [命令参考](commands/README.md) - 每个命令的详细文档
+- [Agent 文档](agents/overview.md) - TDD Agent 如何工作
 - [常见问题](faq.md) - 常见问题与解答
 - [Intent 标准](intent-standard.md) - 文件格式规范

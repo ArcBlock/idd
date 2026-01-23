@@ -318,7 +318,7 @@ Intent 是你的契约——如果 Agent 偏离，Intent 帮助你发现。
 ## 更多帮助
 
 - [IDD 工作流程](workflow.md) - 完整指南
-- [命令参考](commands/) - 所有命令
-- [Agent 文档](agents/) - Agent 如何工作
+- [命令参考](commands/README.md) - 所有命令
+- [Agent 文档](agents/overview.md) - Agent 如何工作
 - [Intent 标准](intent-standard.md) - 文件格式
 - [方法论](methodology.md) - IDD 哲学

@@ -258,7 +258,7 @@ See: [/intent-story command](commands/intent-story.md)
 
 ## Next Steps
 
-- [Command Reference](commands/) - Detailed documentation for each command
-- [Agent Documentation](agents/) - How the TDD agents work
+- [Command Reference](commands/README.md) - Detailed documentation for each command
+- [Agent Documentation](agents/overview.md) - How the TDD agents work
 - [FAQ](faq.md) - Common questions and answers
 - [Intent Standard](intent-standard.md) - File format specification

@@ -296,7 +296,7 @@ default: main
 ## 相关文档
 
 - [intent-approval.md](intent-approval.md) - Section 级别的审批机制
-- [intent-vs-sdd.md](intent-vs-sdd.md) - Intent vs SDD 方法论对比
+- [methodology.md](methodology.md) - Intent vs SDD 方法论对比
 
 ---
 
